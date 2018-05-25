@@ -1,4 +1,4 @@
-# meituan-web-html
+# meituan-web
 
 > A Vue.js project
 
