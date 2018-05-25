@@ -1,0 +1,121 @@
+<template>
+   <page-panel title="商家推送管理">
+    <template slot="page-panel-header-btns">
+      
+    </template>
+    <section slot="page-panel-body">
+      <!-- 查询 -->
+      <div class="_search-header">
+        <el-form :inline="true" :model="queryObj">
+          <el-form-item>
+            <el-button icon="el-icon-search" type="primary" @click="loadTableData()" :loading="isLoading">查询(缓存数据)</el-button>
+            <el-button icon="el-icon-search" type="primary" @click="loadTableData(true)" :loading="isLoading">重新加载(更新缓存)</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <!-- 列表 -->
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column align="center" prop="companyAccountId" label="商家ID"> </el-table-column>
+        <el-table-column align="center" prop="companyAccountName" label="商家名称"> </el-table-column>
+        <el-table-column align="center" prop="partnerId" label="partnerId"> </el-table-column>
+        <el-table-column align="center" prop="encryptKey" label="secretKey"> </el-table-column>
+        <el-table-column align="center" width="350" label="操作">
+          <template slot-scope="scope">
+            <el-button size="mini" type="info" @click="onPushPoi(scope.row)" :loading="isLoading">全量推送酒店</el-button>
+            <el-button size="mini" type="success" @click="onSyncPoiStatus(scope.row)" :loading="isLoading">更新酒店匹配状态</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </section>
+  </page-panel>
+</template>
+<script>
+import filter from 'lodash/filter'
+export default {
+  components:{},
+  data () {
+    return {
+      isLoading:false,
+      tableData:[],
+      successData:[],
+      failData:[],
+      queryObj:{
+        reloadData:false
+      },
+    }
+  },
+  methods:{
+     loadTableData: async function(reloadData=false) {
+      this.isLoading=true
+      this.queryObj.reloadData=reloadData
+      let result=await this.$api.company.getCompanyAccountList(this.queryObj)
+      const {error,data}=result
+      if(error!=null)
+        return
+      this.isLoading=false
+      this.tableData=data
+    },
+    async onPushPoi(row){
+      this.isLoading=true
+      try {
+        await this.$confirm(`确认要提交操作吗?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        // 同意
+        let params={'companyAccountId':row.companyAccountId}
+        let result = await this.$api.company.syncAccountPois(params)
+        const {error,data}=result
+        if(error!=null)
+          return
+        this.isLoading=false
+        if(data.success){
+          if(data.data.length>0){
+            this.successData=filter(data.data,{'success':true})
+            this.failData=filter(data.data,{'success':false})
+            let resultMsg="成功记录数="+this.successData.length+",失败记录数="+this.failData.length
+            this.$message.success("操作成功,"+resultMsg)
+          }
+        }else{
+          this.$message.error(data.message)
+        }
+      } catch (e) {
+        this.isLoading=false
+      }
+    },
+    onSyncPoiStatus:async function(row){
+      this.isLoading=true
+      try {
+        await this.$confirm(`确认要提交操作吗?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        // 同意
+        let params={'companyAccountId':row.companyAccountId}
+        let result = await this.$api.company.syncAccountPoiStatus(params)
+        const {error,data}=result
+        this.isLoading=false
+        if(error!=null)
+          return
+        if(data.success){
+          this.$message.success("操作成功")
+        }else{
+          this.$message.error(data.message)
+        }
+      } catch (e) {
+        this.isLoading=false
+      }
+    }
+  },
+  created() {
+    this.loadTableData()
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>
+

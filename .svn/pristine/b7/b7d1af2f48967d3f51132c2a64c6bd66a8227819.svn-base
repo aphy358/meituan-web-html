@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta property="qc:admins" content="游掌柜" />
+    <meta property="wb:webmaster" content="游掌柜" />
+    <meta name="keywords" content="游掌柜" />
+    <meta name="description" content="游掌柜" />
+    <title>游掌柜对接美团服务</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script src="/static/jquery/jquery-3.2.1/dist/jquery.min.js"></script>
+  </body>
+</html>

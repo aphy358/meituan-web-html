@@ -1,0 +1,18 @@
+{
+  "name":"彭彩云",
+  "home":"网站首页",
+  "aboutUs":"关于我们",
+  "product":"产品展示",
+  "news":"新闻中心",
+  "contact":"联系我们",
+  "homepage":{
+    "contactType":"联系方式",
+    "contactTel":"咨询热线",
+    "contactEmail":"邮箱",
+    "address":"地址",
+    "companyAddress":"中国 广东省深圳市龙岗区坂田",
+    "messageOnline":"在线留言",
+    "interactivePlatform":"互动平台",
+    "footerText":"版权所有©2018  All rights reserved   京ICP备88888888号"
+  }
+}

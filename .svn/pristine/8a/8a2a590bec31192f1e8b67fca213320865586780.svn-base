@@ -1,0 +1,153 @@
+
+._search-header {
+  padding: 10px 10px 0px 10px;
+  background-color: #f1fafd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  .el-form-item { margin-bottom: 10px; }
+  &:empty { display: none; }
+}
+
+// 有分类页面布局
+._page-aside-section {
+  > ._page-panel-h-c { flex: 0.4; }
+  > ._page-panel-h-r { flex: 0.3; }
+  > ._page-panel-b {
+    display: flex;
+    padding: 0;
+    > aside {
+      width: 230px;
+    }
+    > section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #ddd;
+      position: relative;
+      overflow: hidden;
+      > section {
+        flex: 1;
+        padding: 8px;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+      > footer {
+        padding: 5px;
+        text-align: center;
+        border-top: 1px solid #ddd;
+        &:empty { display: none; }
+      }
+    }
+  }
+
+  ._data-opts {
+    min-height: 40px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #dfe6ec;
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: #fbfbfb;
+    h1 { padding-left: 10px; }
+  }
+}
+
+// 分页
+._el-pagination-wrapper {
+  // padding: 5px;
+  padding: 12px;
+  text-align: center;
+}
+
+// 表单美化
+._form-beautify {
+  &.el-form--inline {
+    text-align: center;
+  }
+  > .el-form-item {
+    min-height: 50px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #dfe6ec;
+    > .el-form-item__label {
+      padding: 0;
+      line-height: 50px;
+      text-align: center;
+    }
+    > .el-form-item__content {
+      max-width: 700px;
+      line-height: 50px;
+      padding-left: 50px;
+      padding-right: 50px;
+      color: #777c8d;
+      border-left: 1px solid #dfe6ec;
+      > .el-form-item__error {
+        position: relative;
+        padding-top: 0;
+        margin-bottom: 5px;
+      }
+      > .el-textarea {
+        margin: 12px 0;
+      }
+      > .el-select { width: 100%; }
+    }
+  }
+  .el-form-item:nth-child(odd) {
+    background-color: #fafafa;
+  }
+  .el-form-item:last-child {
+    border-bottom: 1px solid transparent;
+  }
+
+  // inline-form
+  &.el-form--inline {
+    border: 1px solid rgba(0, 0, 0, 0);
+    color: #155724;
+    background-color: #f1fafd;
+    border-color: #c3e6cb;
+    border-radius: 4px;
+    .el-form-item {
+      background-color: transparent;
+      border-bottom: 0;
+      .el-form-item__label {
+        padding: 0 5px;
+      }
+    }
+    .el-form-item__content {
+      padding: 0 10px;
+      border-left: 0;
+    }
+  }
+}
+
+// 角色设置
+._role-user-set-transfer {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  .el-transfer-panel {
+    border: 1px solid #d1dbe5;
+    min-width: 400px;
+    height: 100%;
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .el-transfer-panel__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      .el-transfer-panel__list { flex: 1; }
+    }
+  }
+}
+
+// 增加el-tag尺寸
+.el-tag._el-tag-large {
+  height: auto;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: inherit;
+}
